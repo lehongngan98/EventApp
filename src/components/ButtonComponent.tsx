@@ -34,7 +34,7 @@ const ButtonComponent = (props: Props) => {
 
                 onPress={onPress}
             >
-                {icon && icon === 'left' && icon}
+                {icon && iconFlex === 'left' && icon}
                 <TextComponent
                     text={text}
                     color={textColor ?? appColors.white}
