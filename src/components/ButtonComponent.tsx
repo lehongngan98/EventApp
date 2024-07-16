@@ -14,19 +14,21 @@ interface Props {
     styles?: StyleProp<ViewStyle>;
     textColor?: string;
     textStyle?: StyleProp<TextStyle>;
-    
+    textFont?: string;
     onPress?: () => void;
     iconFlex?: 'right' | 'left';
 }
 const ButtonComponent = (props: Props) => {
-    const { icon, text, type, color, styles, textColor, textStyle, onPress, iconFlex } = props;
+    const { icon, text, type, color, styles, textColor, textStyle, onPress, iconFlex ,textFont} = props;
 
 
     return (
         type === 'primary' ? ( // primary button
             <TouchableOpacity
-                style={[globalStyles.button, {
+                style={[globalStyles.button,globalStyles.shadow, {
                     backgroundColor: color ?? appColors.primary,
+                    width:'100%',
+                    marginBottom:20,
                 }, styles]}
 
                 onPress={onPress}
@@ -42,7 +44,7 @@ const ButtonComponent = (props: Props) => {
                             fontSize:16,
 
                         }]}
-                    font={fontFamilies.bold}
+                    font={textFont ?? fontFamilies.bold}
                     flex={icon && iconFlex === 'right' ? 1 : 0}
                     
 

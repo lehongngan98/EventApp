@@ -8,7 +8,7 @@ import SocialLogin from './components/SocialLogin'
 
 
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}: any) => {
 
     const [email, setEmail] = useState('');
 
@@ -18,7 +18,7 @@ const LoginScreen = () => {
 
 
     return (
-        <ContainerComponent isImageBackground>
+        <ContainerComponent isImageBackground isScroll>
 
             <SectionComponent
                 styles={{
@@ -85,23 +85,25 @@ const LoginScreen = () => {
             <SpaceComponent height={16} />
 
             <SectionComponent>
-                <ButtonComponent
-                    text='Sign In'
-                    onPress={() => { }}
-                    type='primary'
-                />
+                <RowComponent justify='center' >
+                    <ButtonComponent
+                        text='Sign In'
+                        onPress={() => { }}
+                        type='primary'
+
+                    />
+                </RowComponent>
             </SectionComponent>
 
-            <SocialLogin/>
+            <SocialLogin />
 
             <SectionComponent>
                 <RowComponent justify='center'>
                     <TextComponent text='Don’t have an account? ' />
                     <ButtonComponent
                         text='Sign Up'
-                        onPress={() => { }}
-                        type='link'
-                        
+                        onPress={() => navigation.navigate('SignUpScreen')}
+                        type='link'                                                
                     />
                 </RowComponent>
             </SectionComponent>
