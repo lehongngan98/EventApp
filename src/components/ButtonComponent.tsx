@@ -15,11 +15,12 @@ interface Props {
     textColor?: string;
     textStyle?: StyleProp<TextStyle>;
     textFont?: string;
+    textSize?: number;
     onPress?: () => void;
     iconFlex?: 'right' | 'left';
 }
 const ButtonComponent = (props: Props) => {
-    const { icon, text, type, color, styles, textColor, textStyle, onPress, iconFlex ,textFont} = props;
+    const { icon, text, type, color, styles, textColor, textStyle, onPress, iconFlex ,textFont,textSize} = props;
 
 
     return (
@@ -27,13 +28,13 @@ const ButtonComponent = (props: Props) => {
             <TouchableOpacity
                 style={[globalStyles.button,globalStyles.shadow, {
                     backgroundColor: color ?? appColors.primary,
-                    width:'100%',
+                    width:'80%',
                     marginBottom:20,
                 }, styles]}
 
                 onPress={onPress}
             >
-                {icon && icon}
+                {icon && icon === 'left' && icon}
                 <TextComponent
                     text={text}
                     color={textColor ?? appColors.white}
@@ -41,11 +42,12 @@ const ButtonComponent = (props: Props) => {
                         textStyle,
                         {
                             marginLeft: icon ? 12 : 0,
-                            fontSize:16,
-
+                            fontSize:textSize,
+                            textAlign:'center',
                         }]}
                     font={textFont ?? fontFamilies.bold}
                     flex={icon && iconFlex === 'right' ? 1 : 0}
+                    
                     
 
                 />

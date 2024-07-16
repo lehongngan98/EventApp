@@ -8,7 +8,7 @@ import SocialLogin from './components/SocialLogin'
 
 
 
-const LoginScreen = ({navigation}: any) => {
+const LoginScreen = ({ navigation }: any) => {
 
     const [email, setEmail] = useState('');
 
@@ -40,7 +40,9 @@ const LoginScreen = ({navigation}: any) => {
                 styles={{}}
             >
                 <TextComponent text='Sign In' size={24} font={fontFamilies.medium} />
+
                 <SpaceComponent height={21} />
+
                 <InputComponent
                     value={email}
                     onChange={val => setEmail(val)}
@@ -75,7 +77,7 @@ const LoginScreen = ({navigation}: any) => {
                     </RowComponent>
                     <ButtonComponent
                         text='Forgot Password?'
-                        onPress={() => { }}
+                        onPress={() => navigation.navigate('ForgotPassword')}
                         type='text'
 
                     />
@@ -103,7 +105,7 @@ const LoginScreen = ({navigation}: any) => {
                     <ButtonComponent
                         text='Sign Up'
                         onPress={() => navigation.navigate('SignUpScreen')}
-                        type='link'                                                
+                        type='link'
                     />
                 </RowComponent>
             </SectionComponent>
