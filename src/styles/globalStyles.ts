@@ -25,5 +25,9 @@ export const globalStyles = StyleSheet.create({
         minHeight:56,
         flexDirection:'row',
         marginHorizontal:50,
+    },
+    section:{
+        paddingHorizontal:16,
+        paddingBottom:20,
     }
 })
