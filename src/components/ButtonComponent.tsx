@@ -14,6 +14,7 @@ interface Props {
     styles?: StyleProp<ViewStyle>;
     textColor?: string;
     textStyle?: StyleProp<TextStyle>;
+    
     onPress?: () => void;
     iconFlex?: 'right' | 'left';
 }
@@ -38,14 +39,18 @@ const ButtonComponent = (props: Props) => {
                         textStyle,
                         {
                             marginLeft: icon ? 12 : 0,
+                            fontSize:16,
+
                         }]}
-                    font={fontFamilies.medium}
+                    font={fontFamilies.bold}
                     flex={icon && iconFlex === 'right' ? 1 : 0}
+                    
+
                 />
                 {icon && iconFlex === 'right' && icon}
             </TouchableOpacity>
         ) : (   // text button
-            <TouchableOpacity                
+            <TouchableOpacity
                 onPress={onPress}
             >
                 <TextComponent
