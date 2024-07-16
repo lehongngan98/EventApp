@@ -5,16 +5,19 @@ import Swiper from 'react-native-swiper'
 import { appInfo } from '../../constants/appInfos'
 import { appColors } from '../../constants/appColors'
 import { useNavigation } from '@react-navigation/native'
+import { TextComponent } from '../../components'
+import { fontFamilies } from '../../constants/fontFamilies'
 
-const OnboardingScreen = ({navigation}: any) => {
+
+const OnboardingScreen = ({ navigation }: any) => {
     const [index, setindex] = useState(0);
-    
+
     return (
         <SafeAreaView style={[globalStyles.container]}>
             <Swiper
                 loop={false}
                 index={index}
-                onIndexChanged={num => setindex(num)}                
+                onIndexChanged={num => setindex(num)}
                 activeDotColor={appColors.white}
             >
                 <Image
@@ -45,32 +48,46 @@ const OnboardingScreen = ({navigation}: any) => {
                 />
             </Swiper>
 
+
+            {/* touchable  Next and Skip*/}
             <View
                 style={[
                     {
                         position: 'absolute',
                         bottom: 0,
-                        right:0,
+                        right: 0,
                         left: 0,
                         padding: 20,
                         flexDirection: 'row',
-                        paddingVertical:55,
-                        paddingHorizontal:20,
+                        paddingVertical: 55,
+                        paddingHorizontal: 20,
                         justifyContent: 'space-between',
                     }
-                    
+
                 ]}
             >
                 <TouchableOpacity
-                    onPress={()=> navigation.navigate("LoginScreen")}
+                    onPress={() => navigation.navigate("LoginScreen")}
                 >
-                    <Text style={{color: appColors.white, fontSize: 16}}>Skip</Text>
+                     <TextComponent
+                        
+                        text='Skip'
+                        color={appColors.white}
+                        font={fontFamilies.medium}
+                        size={18}
+                    />
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    onPress={()=> index < 2 ? setindex(index + 1) : navigation.navigate("LoginScreen")}
+                    onPress={() => index < 2 ? setindex(index + 1) : navigation.navigate("LoginScreen")}
                 >
-                    <Text style={{color: appColors.white, fontSize: 16}}>Next</Text>
+                    <TextComponent
+                        
+                        text='Next'
+                        color={appColors.white}
+                        font={fontFamilies.medium}
+                        size={18}
+                    />
                 </TouchableOpacity>
 
             </View>
