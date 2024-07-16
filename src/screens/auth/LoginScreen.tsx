@@ -1,10 +1,11 @@
 import { Button, SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { ButtonComponent, InputComponent } from '../../components'
+import { ButtonComponent, ContainerComponent, InputComponent } from '../../components'
 import { globalStyles } from '../../styles/globalStyles'
 import { Lock, Lock1, Sms } from 'iconsax-react-native'
 import { appColors } from '../../constants/appColors'
+
 
 const LoginScreen = () => {
 
@@ -17,9 +18,7 @@ const LoginScreen = () => {
     })
 
     return (
-        <SafeAreaView
-            style={[globalStyles.container, { padding: 20, alignItems: 'center', justifyContent: 'center' }]}
-        >
+        <ContainerComponent isImageBackground>
             <View style={styles.content}>
                 <InputComponent
                     value={email}
@@ -39,7 +38,7 @@ const LoginScreen = () => {
                     type='default'
                 />
             </View>
-        </SafeAreaView>
+        </ContainerComponent>
     )
 }
 
