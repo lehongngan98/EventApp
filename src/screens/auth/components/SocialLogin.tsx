@@ -3,7 +3,8 @@ import React from 'react'
 import { ButtonComponent, SectionComponent, TextComponent } from '../../../components'
 import { appColors } from '../../../constants/appColors'
 import { fontFamilies } from '../../../constants/fontFamilies'
-import { Google } from 'iconsax-react-native'
+import { Google } from '../../../assets/svg'
+
 
 const SocialLogin = () => {
     return (
@@ -12,7 +13,7 @@ const SocialLogin = () => {
             <ButtonComponent
                 text='Login with Google'
                 textColor={appColors.text}
-                icon={<Google size={20} color='red'/>}
+                icon={<Google/>}
                 iconFlex='left'
                 color={appColors.white}
                 type='primary'
