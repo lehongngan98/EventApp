@@ -32,6 +32,7 @@ const InputComponent = (props: Props) => {
                 style={[globalStyles.text,styles.input]}
                 placeholderTextColor={appColors.gray2}
                 keyboardType={type ?? 'default'}
+                autoCapitalize='none'
             />
 
             {isPassword && (

@@ -28,7 +28,7 @@ export const globalStyles = StyleSheet.create({
     },
     section:{
         paddingHorizontal:16,
-        paddingBottom:20,
+        paddingBottom:10,
     },
     row:{
         flexDirection:'row',

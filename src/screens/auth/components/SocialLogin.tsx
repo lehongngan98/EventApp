@@ -8,7 +8,7 @@ import { Facebook, Google } from '../../../assets/svg'
 
 const SocialLogin = () => {
     return (
-        <SectionComponent styles={{ alignItems: 'center',paddingHorizontal:20 }}>
+        <SectionComponent styles={{ alignItems: 'center',paddingHorizontal:10 }}>
             
                 <TextComponent text='OR' color={appColors.gray4} size={16} font={fontFamilies.medium} />
                 <ButtonComponent
