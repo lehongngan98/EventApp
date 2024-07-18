@@ -46,22 +46,23 @@ const SignUpScreen = ({ navigation }: any) => {
         const emailValidate = Validate.email(email);
         const passwordValidate = Validate.Password(password);
 
-       
+
 
         if (username && email && password && confirmPassword) {
 
-            if (!emailValidate) {
-                Alert.alert('Lỗi', 'Email không hợp lệ!')
+            if (!emailValidate) {                
+                Alert.alert('Error', 'Invalid email address!')                
                 return;
             }
 
             if (!passwordValidate) {
-                Alert.alert('Lỗi', 'Mật khẩu phải chứa ít nhất 6 ký tự!')
+                
+                Alert.alert('Error', 'Password must be at least 6 characters long!') 
                 return;
             }
 
-            if (password !== confirmPassword) {
-                Alert.alert('Lỗi', 'Mật khẩu không trùng khớp!')
+            if (password !== confirmPassword) {                
+                Alert.alert('Error', 'Password and confirm password do not match!')
                 return;
             }
 
@@ -70,21 +71,27 @@ const SignUpScreen = ({ navigation }: any) => {
             try {
                 const res = await authentication.HandleAuthentication(
                     '/register',
-                    values,
+                    {
+                        fullname: values.username,
+                        email,
+                        password
+                    },
                     'post'
                 )
-                
+
+                console.log(res);
 
                 setLoading(false);
-                Alert.alert('Thành công!', res.data.message)
+                
+                Alert.alert('Register successfully!', res.data)
             } catch (error) {
                 console.log(error);
                 setLoading(false);
-            }finally{
+            } finally {
                 setLoading(false);
             }
-        }else{
-            Alert.alert('Lỗi','Vui lòng nhập đầy đủ thông tin!')
+        } else {            
+            Alert.alert('Error', 'Please fill in all fields!')      
         }
 
     };
