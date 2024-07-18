@@ -1,10 +1,11 @@
 import { Lock1, Sms } from 'iconsax-react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Image, StyleSheet, Switch, View } from 'react-native'
 import { ButtonComponent, ContainerComponent, InputComponent, RowComponent, SectionComponent, SpaceComponent, TextComponent } from '../../components'
 import { appColors } from '../../constants/appColors'
 import { fontFamilies } from '../../constants/fontFamilies'
 import SocialLogin from './components/SocialLogin'
+import authentication from '../../apis/authApi'
 
 
 
@@ -16,6 +17,18 @@ const LoginScreen = ({ navigation }: any) => {
 
     const [remember, setRemember] = useState(false);
 
+    const handleLogin = async () =>{
+        try {
+            const res = await authentication.HandleAuthentication('/hello');
+            console.log(res);
+            
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+
+   
 
     return (
         <ContainerComponent isImageBackground isScroll>
@@ -89,10 +102,9 @@ const LoginScreen = ({ navigation }: any) => {
             <SectionComponent>
                 <RowComponent justify='center' >
                     <ButtonComponent
-                        text='Sign In'
-                        onPress={() => { }}
+                        text='Sign In'                        
                         type='primary'
-
+                        onPress={handleLogin}
                     />
                 </RowComponent>
             </SectionComponent>
