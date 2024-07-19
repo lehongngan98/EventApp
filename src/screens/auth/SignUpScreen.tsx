@@ -9,6 +9,9 @@ import { LoadingModal } from '../../modal'
 import axiosClient from '../../apis/axiosClient'
 import authentication from '../../apis/authApi'
 import { Validate } from '../../utils/validate'
+import { useDispatch } from 'react-redux'
+import { addAuth } from '../../redux/reducers/authReducer'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const initValues = {
@@ -25,6 +28,8 @@ const SignUpScreen = ({ navigation }: any) => {
 
     const [values, setValues] = useState(initValues);
     const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+
 
     const handleChangeValue = (key: string, value: string) => {
         const data: any = { ...values };
@@ -35,9 +40,7 @@ const SignUpScreen = ({ navigation }: any) => {
     };
 
 
-    //  useEffect(()=>{
-    //     setLoading(false)
-    //  })
+    
 
 
     const handleRegister = async () => {
@@ -79,9 +82,14 @@ const SignUpScreen = ({ navigation }: any) => {
                     'post'
                 )
 
-                console.log(res);
+                dispatch(addAuth(res.data));       
+
+                await AsyncStorage.setItem('auth',JSON.stringify(res.data)); // lưu thông tin user vào local
 
                 setLoading(false);
+
+                console.log("data :",res.data);
+                
                 
                 Alert.alert('Register successfully!', res.data)
             } catch (error) {
