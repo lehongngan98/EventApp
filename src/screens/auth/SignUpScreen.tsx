@@ -66,8 +66,13 @@ const SignUpScreen = ({ navigation }: any) => {
         const api = '/verification';
         
         try {
-            const res = authentication.HandleAuthentication(api,{email:values.email},'post');
+            const res = await authentication.HandleAuthentication(api,{email: values.email},'post');
+            
             console.log(res);
+
+            if(res.status === 200){
+                navigation.navigate('Verification',{email: values.email,password: values.password});
+            }
             
         } catch (error) {
             console.log(error);            

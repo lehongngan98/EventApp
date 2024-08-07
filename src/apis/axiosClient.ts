@@ -20,13 +20,14 @@ axiosClient.interceptors.request.use(async (config: any) => {
 })
 
 
-axiosClient.interceptors.response.use(res => {
-    if (res.data && res.status === 200) {
-        return res.data
-    }
-    throw new Error('Error');
+axiosClient.interceptors.response.use(
+    res => {
+        if (res.data && res.status === 200) {
+            return res.data
+        }
+        throw new Error('Error');
 
-},
+    },
     error => {
         console.log(`Error api ${JSON.stringify(error)}`);
 
