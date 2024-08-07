@@ -18,16 +18,18 @@ interface Props {
     textSize?: number;
     onPress?: () => void;
     iconFlex?: 'right' | 'left';
+    disable?: boolean;
 }
 const ButtonComponent = (props: Props) => {
-    const { icon, text, type, color, styles, textColor, textStyle, onPress, iconFlex ,textFont,textSize} = props;
+    const { icon, text, type, color, styles, textColor, textStyle, onPress, iconFlex ,textFont,textSize, disable} = props;
 
 
     return (
         type === 'primary' ? ( // primary button
-            <TouchableOpacity
+            <TouchableOpacity disabled={disable}
                 style={[globalStyles.button,globalStyles.shadow, {
-                    backgroundColor: color ?? appColors.primary,
+                    
+                    backgroundColor: color ? color : disable ? appColors.gray4 : appColors.primary,
                     width:'80%',
                     marginBottom:20,
                 }, styles]}

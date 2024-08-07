@@ -1,5 +1,5 @@
 import { KeyboardType, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native';
-import React, { ReactNode, useState } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 import { EyeSlash, Eye } from 'iconsax-react-native';
 import { appColors } from '../constants/appColors';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -13,13 +13,21 @@ interface Props {
     suffix?: ReactNode;
     isPassword?: boolean;
     allowClear?: boolean;
-    type?: KeyboardType
+    type?: KeyboardType;
+    onEnd?: () => void;
 }
 
 const InputComponent = (props: Props) => {
-    const { value, onChange, affix, placeholder, suffix, isPassword, allowClear ,type} = props;
+    const { value, onChange, affix, placeholder, suffix, isPassword, allowClear ,type ,onEnd} = props;
 
     const [isShowPass, setIsShowPass] = useState(false);
+
+    const inputRef = useRef<TextInput>(null); // Create a ref for the TextInput
+
+    const handleClear = () => {
+        onChange('');
+        inputRef.current?.focus(); // Manually focus the TextInput after clearing
+    };
 
     return (
         <View style={[styles.container,{}]}>
@@ -33,6 +41,8 @@ const InputComponent = (props: Props) => {
                 placeholderTextColor={appColors.gray2}
                 keyboardType={type ?? 'default'}
                 autoCapitalize='none'
+                onEndEditing={onEnd}
+                ref={inputRef} // Attach the ref to the TextInput
             />
 
             {isPassword && (
@@ -46,7 +56,7 @@ const InputComponent = (props: Props) => {
             )}
 
             {allowClear && value.length > 0 && !isPassword && (
-                <TouchableOpacity onPress={() => onChange('')}>
+                <TouchableOpacity onPress={handleClear}>
                     <AntDesign name='close' size={22} color={appColors.gray3} />
                 </TouchableOpacity>
             )}

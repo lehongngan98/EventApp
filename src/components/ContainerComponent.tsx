@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { ArrowLeft } from 'iconsax-react-native';
 import React, { ReactNode } from 'react';
-import { ImageBackground, SafeAreaView, ScrollView, TouchableOpacity, View } from 'react-native';
+import { ImageBackground, Keyboard, SafeAreaView, ScrollView, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
 import { appColors } from '../constants/appColors';
 import { globalStyles } from '../styles/globalStyles';
 import RowComponent from './RowComponent';
@@ -34,30 +34,32 @@ const ContainerComponent = (props: Props) => {
 
     const headerComponent = () => {
         return (
-            <View style={{ flex: 1 }}>
-                {
-                    (title || back) && (
-                        <RowComponent
-                            styles={{
-                                paddingHorizontal: 16,
-                                paddingVertical: 8,
-                                minHeight: 48, // quy dinh cua google
-                                minWidth: 48, // quy dinh cua google
-                            }}
-                        >
-                            <TouchableOpacity
-                                onPress={() => navigation.goBack()}
-                                style={{ flexDirection: 'row', justifyContent: 'center', gap: 5, alignItems: 'center' }}
+            <TouchableNativeFeedback onPress={Keyboard.dismiss}>
+                <View style={{ flex: 1 }}>
+                    {
+                        (title || back) && (
+                            <RowComponent
+                                styles={{
+                                    paddingHorizontal: 16,
+                                    paddingVertical: 8,
+                                    minHeight: 48, // quy dinh cua google
+                                    minWidth: 48, // quy dinh cua google
+                                }}
                             >
-                                <ArrowLeft size={24} color={appColors.text} />
-                                {title && <TextComponent text={title} font={fontFamilies.semiBold} size={16} />}
-                            </TouchableOpacity>
-                        </RowComponent>
-                    )
-                }
+                                <TouchableOpacity
+                                    onPress={() => navigation.goBack()}
+                                    style={{ flexDirection: 'row', justifyContent: 'center', gap: 5, alignItems: 'center' }}
+                                >
+                                    <ArrowLeft size={24} color={appColors.text} />
+                                    {title && <TextComponent text={title} font={fontFamilies.semiBold} size={16} />}
+                                </TouchableOpacity>
+                            </RowComponent>
+                        )
+                    }
 
-                {returnComponent}
-            </View>
+                    {returnComponent}
+                </View>
+            </TouchableNativeFeedback>
         )
     }
 

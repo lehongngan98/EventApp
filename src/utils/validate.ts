@@ -1,6 +1,6 @@
 export class Validate {
     static email(mail: string) {
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
+        if (/^[\w.-]+@gmail\.com$/.test(mail)) {
             return true;
         }
         return false;

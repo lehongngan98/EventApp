@@ -1,11 +1,16 @@
 import { Lock1, Sms } from 'iconsax-react-native'
 import React, { useEffect, useState } from 'react'
-import { Image, StyleSheet, Switch, View } from 'react-native'
+import { Alert, Image, StyleSheet, Switch, View } from 'react-native'
 import { ButtonComponent, ContainerComponent, InputComponent, RowComponent, SectionComponent, SpaceComponent, TextComponent } from '../../components'
 import { appColors } from '../../constants/appColors'
 import { fontFamilies } from '../../constants/fontFamilies'
 import SocialLogin from './components/SocialLogin'
 import authentication from '../../apis/authApi'
+import { Validate } from '../../utils/validate'
+import { useDispatch } from 'react-redux'
+import { addAuth } from '../../redux/reducers/authReducer'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+
 
 
 
@@ -15,20 +20,38 @@ const LoginScreen = ({ navigation }: any) => {
 
     const [password, setPassword] = useState('');
 
-    const [remember, setRemember] = useState(false);
+    const [isRemember, setIsRemember] = useState(true);
 
-    const handleLogin = async () =>{
+    const dispatch = useDispatch();
+
+    const handleLogin = async () => {
+
+        const emailValidate = Validate.email(email);
+
+        if (!emailValidate) {                
+            Alert.alert('Error', 'Invalid email address!')                
+            return;
+        }
+
         try {
-            const res = await authentication.HandleAuthentication('/hello');
-            console.log(res);
+            const res = await authentication.HandleAuthentication('/login', { email, password }, 'post');
             
+            dispatch(addAuth(res.data));
+
+            await AsyncStorage.setItem(
+                'auth',
+                isRemember ? JSON.stringify(res.data) : email, 
+            );
+
+
+
         } catch (error) {
             console.log(error);
-            
+
         }
     }
 
-   
+
 
     return (
         <ContainerComponent isImageBackground isScroll>
@@ -76,16 +99,15 @@ const LoginScreen = ({ navigation }: any) => {
 
                 <RowComponent justify='space-between'>
                     <RowComponent
-                        onPress={() => setRemember(!remember)}
-                        styles={{ gap: 4 }}
-
+                        onPress={() => setIsRemember(!isRemember)}                        
                     >
                         <Switch
-                            value={remember}
-                            onChange={() => setRemember(!remember)}
+                            value={isRemember}
+                            onChange={() => setIsRemember(!isRemember)}
                             trackColor={{ true: appColors.primary }}
                             thumbColor={appColors.white}
                         />
+                        <SpaceComponent width={4}/>
                         <TextComponent text='Remember me' />
                     </RowComponent>
                     <ButtonComponent
@@ -102,7 +124,7 @@ const LoginScreen = ({ navigation }: any) => {
             <SectionComponent>
                 <RowComponent justify='center' >
                     <ButtonComponent
-                        text='Sign In'                        
+                        text='Sign In'
                         type='primary'
                         onPress={handleLogin}
                     />
