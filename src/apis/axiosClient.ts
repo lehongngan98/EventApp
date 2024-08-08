@@ -1,8 +1,10 @@
 import axios from "axios";
 import queryString from "query-string";
 import data from '../../../EventApp-Server/node_modules/@mongodb-js/saslprep/dist/code-points-data-browser.d';
+import { appInfo } from "../constants/appInfos";
 
 const axiosClient = axios.create({
+    baseURL: appInfo.BASE_URL,
     paramsSerializer: params => queryString.stringify(params)
 })
 
@@ -25,13 +27,13 @@ axiosClient.interceptors.response.use(
         if (res.data && res.status === 200) {
             return res.data
         }
-        throw new Error('Error');
+        throw new Error('Error:');
 
     },
     error => {
         console.log(`Error api ${JSON.stringify(error)}`);
 
-        throw new Error(error.response);
+        throw new Error(error.status);
     }
 );
 

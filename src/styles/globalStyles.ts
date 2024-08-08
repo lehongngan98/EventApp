@@ -45,6 +45,15 @@ export const globalStyles = StyleSheet.create({
         shadowOpacity:0.25,
         shadowRadius:8,
         elevation:6,
-    }
+    },
+
+    iconContainer:{
+        width: 30,
+        height:30,
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:appColors.icon,
+        borderRadius:100,
+    },
     
 })

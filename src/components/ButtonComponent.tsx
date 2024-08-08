@@ -40,6 +40,7 @@ const ButtonComponent = (props: Props) => {
                 <TextComponent
                     text={text}
                     color={textColor ?? appColors.white}
+                    
                     styles={[
                         textStyle,
                         {
@@ -62,6 +63,8 @@ const ButtonComponent = (props: Props) => {
                 <TextComponent
                     text={text}
                     color={type === 'link' ? appColors.primary : appColors.text}
+                    size={textSize}
+                    font={textFont}
                 />
             </TouchableOpacity>
         )

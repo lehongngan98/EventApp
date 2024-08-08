@@ -42,13 +42,7 @@ const SignUpScreen = ({ navigation }: any) => {
 
     const dispatch = useDispatch();
 
-    // useEffect(() => {       
-    //     if(!errorMessage || errorMessage && (errorMessage.username || errorMessage.email || errorMessage.password || errorMessage.confirmPassword)){
-    //         setIsDisable(true);
-    //     }else{
-    //         setIsDisable(false);
-    //     }
-    // }, [errorMessage]);
+   
 
     useEffect(() => {
         const hasErrors = Object.values(errorMessage).some(msg => msg !== '');
@@ -64,18 +58,19 @@ const SignUpScreen = ({ navigation }: any) => {
 
     const handleRegister = async () => {
         const api = '/verification';
-        
+        setLoading(true);
         try {
             const res = await authentication.HandleAuthentication(api,{email: values.email},'post');
             
             console.log(res);
-
+            setLoading(false);
             if(res.status === 200){
-                navigation.navigate('Verification',{email: values.email,password: values.password});
+                navigation.navigate('Verification',{code: res.data.code, ...values});
             }
             
         } catch (error) {
-            console.log(error);            
+            console.log(error);     
+            setLoading(false);       
         }
 
     };
