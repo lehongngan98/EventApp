@@ -22,25 +22,42 @@ const LoginScreen = ({ navigation }: any) => {
 
     const [isRemember, setIsRemember] = useState(true);
 
+    const [isDisable, setIsDisable] = useState(true);
+
+
+
     const dispatch = useDispatch();
+
+
+
+    useEffect(() => {
+        const emailValidate = Validate.email(email);
+        if (!email || !password || !emailValidate) {
+            setIsDisable(true);
+        } else {
+            setIsDisable(false);
+        }
+    }, [email, password]);
+
+
 
     const handleLogin = async () => {
 
         const emailValidate = Validate.email(email);
 
-        if (!emailValidate) {                
-            Alert.alert('Error', 'Invalid email address!')                
+        if (!emailValidate) {
+            Alert.alert('Error', 'Invalid email address!')
             return;
         }
 
         try {
             const res = await authentication.HandleAuthentication('/login', { email, password }, 'post');
-            
+
             dispatch(addAuth(res.data));
 
             await AsyncStorage.setItem(
                 'auth',
-                isRemember ? JSON.stringify(res.data) : email, 
+                isRemember ? JSON.stringify(res.data) : email,
             );
 
 
@@ -99,7 +116,7 @@ const LoginScreen = ({ navigation }: any) => {
 
                 <RowComponent justify='space-between'>
                     <RowComponent
-                        onPress={() => setIsRemember(!isRemember)}                        
+                        onPress={() => setIsRemember(!isRemember)}
                     >
                         <Switch
                             value={isRemember}
@@ -107,7 +124,7 @@ const LoginScreen = ({ navigation }: any) => {
                             trackColor={{ true: appColors.primary }}
                             thumbColor={appColors.white}
                         />
-                        <SpaceComponent width={4}/>
+                        <SpaceComponent width={4} />
                         <TextComponent text='Remember me' />
                     </RowComponent>
                     <ButtonComponent
@@ -124,6 +141,7 @@ const LoginScreen = ({ navigation }: any) => {
             <SectionComponent>
                 <RowComponent justify='center' >
                     <ButtonComponent
+                        disable={isDisable}
                         text='Sign In'
                         type='primary'
                         onPress={handleLogin}
