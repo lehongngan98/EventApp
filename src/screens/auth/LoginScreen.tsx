@@ -103,6 +103,7 @@ const LoginScreen = ({ navigation }: any) => {
                     allowClear
                     affix={<Sms size={22} color={appColors.gray3} />}
                     type='default'
+                    
                 />
 
                 <InputComponent
@@ -148,6 +149,8 @@ const LoginScreen = ({ navigation }: any) => {
                     />
                 </RowComponent>
             </SectionComponent>
+
+            
 
             <SocialLogin />
 

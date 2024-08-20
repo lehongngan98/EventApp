@@ -176,7 +176,7 @@ const SignUpScreen = ({ navigation }: any) => {
                         isPassword
                         allowClear
                         affix={<Lock1 size={22} color={appColors.gray3} />}
-                        // type='default'
+                        type='default'
                         onEnd={() => formValidator('confirmPassword')}
                     />
 

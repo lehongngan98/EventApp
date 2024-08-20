@@ -3,6 +3,7 @@ import React from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useDispatch, useSelector } from 'react-redux'
 import { authSelector, removeAuth } from '../../redux/reducers/authReducer'
+import { GoogleSignin } from '@react-native-google-signin/google-signin'
 
 const HomeScreen = () => {
 
@@ -13,11 +14,12 @@ const HomeScreen = () => {
 
     const handleLogOut = async () =>{
         await AsyncStorage.removeItem('auth'); // Sửa lại ở đây
+        await GoogleSignin.signOut();
         dispatch(removeAuth());
     }
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{marginTop:50}}>
             <Button title='logout' onPress={handleLogOut}/>
         </SafeAreaView>
     )
