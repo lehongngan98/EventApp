@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 GoogleSignin.configure({
     webClientId: '740226152017-kdn1dekdddjkqs20ro8mpf6hlq48dkdf.apps.googleusercontent.com',
+    iosClientId: '740226152017-9jao715a0ndhbga6p4ns9o9lm3ot478r.apps.googleusercontent.com',
 });
 
 

@@ -16,6 +16,22 @@
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+
+	<!-- config signin with google ios -->
+	<key>GIDClientID</key>
+	<string>740226152017-9jao715a0ndhbga6p4ns9o9lm3ot478r.apps.googleusercontent.com</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.740226152017-9jao715a0ndhbga6p4ns9o9lm3ot478r</string>
+			</array>
+		</dict>
+	</array>
+
+
+	
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
