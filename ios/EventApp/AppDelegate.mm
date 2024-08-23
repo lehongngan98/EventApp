@@ -1,6 +1,10 @@
 #import "AppDelegate.h"
 
 #import <React/RCTBundleURLProvider.h>
+// config signin with facebook ios
+#import <AuthenticationServices/AuthenticationServices.h>
+#import <SafariServices/SafariServices.h>
+#import <FBSDKCoreKit/FBSDKCoreKit-Swift.h>
 
 @implementation AppDelegate
 
@@ -11,6 +15,9 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
+  [[FBSDKApplicationDelegate sharedInstance] application:application
+                        didFinishLaunchingWithOptions:launchOptions];
+                        
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 

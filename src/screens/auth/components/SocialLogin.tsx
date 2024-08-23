@@ -54,9 +54,11 @@ const SocialLogin = () => {
             );
 
             console.log(res);
+            setIsLoading(false);
 
         } catch (error) {
             console.log(error);
+            setIsLoading(false);
 
         }
     }
@@ -78,9 +80,12 @@ const SocialLogin = () => {
 
                     const data = {
                         fullname: profile.name,
-                        email: profile.userID,
+                        email: profile.email ?? '',
                         photoURL: profile.imageURL,
                     };
+
+                    console.log("profile :",profile);
+                    
 
                     const res: any = await authentication.HandleAuthentication(api, data, 'post');
 
@@ -93,7 +98,9 @@ const SocialLogin = () => {
 
                     setIsLoading(false);
                 }
+                setIsLoading(false);
             }
+            setIsLoading(false);
         } catch (error) {
             console.log(error);
             setIsLoading(false);
