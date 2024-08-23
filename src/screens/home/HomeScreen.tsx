@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useDispatch, useSelector } from 'react-redux'
 import { authSelector, removeAuth } from '../../redux/reducers/authReducer'
 import { GoogleSignin } from '@react-native-google-signin/google-signin'
+import { LoginManager } from 'react-native-fbsdk-next'
 
 const HomeScreen = () => {
 
@@ -15,6 +16,7 @@ const HomeScreen = () => {
     const handleLogOut = async () =>{
         await AsyncStorage.removeItem('auth'); // Sửa lại ở đây
         await GoogleSignin.signOut();
+        LoginManager.logOut(); // logout facebook
         dispatch(removeAuth());
     }
 
