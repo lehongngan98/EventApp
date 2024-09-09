@@ -36,16 +36,17 @@ export const globalStyles = StyleSheet.create({
         alignItems:'center',
     },
 
-    shadow:{
-        shadowColor:'rgba(0,0,0,0.5)',
-        shadowOffset:{
-            width:0,
-            height:4,
+    shadow: {
+        shadowColor: 'rgba(0, 0, 0, 0.4)', // Softer shadow color
+        shadowOffset: {
+            width: 0,
+            height: 4,
         },
-        shadowOpacity:0.25,
-        shadowRadius:8,
-        elevation:6,
+        shadowOpacity: 0.4,  // Increase opacity for a slightly stronger shadow
+        shadowRadius: 10,    // More blur to create a softer shadow
+        elevation: 8,        // Slightly higher elevation for Android
     },
+    
 
     iconContainer:{
         width: 30,

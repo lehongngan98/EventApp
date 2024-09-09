@@ -7,6 +7,7 @@ import ForgotPassword from './auth/ForgotPassword';
 import EventScreen from './events/EventScreen';
 import ProfileScreen from './profile/ProfileScreen';
 import MapScreen from './map/MapScreen';
+import AddNewScreen from './AddNewScreen';
 export {
     SplashScreen,
     LoginScreen,
@@ -16,5 +17,6 @@ export {
     EventScreen,
     ProfileScreen,
     MapScreen,
+    AddNewScreen,
     
 }
