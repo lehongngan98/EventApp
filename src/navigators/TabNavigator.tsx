@@ -1,7 +1,11 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { HomeScreen } from '../screens';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
+import EventNavigator from './EventNavigator';
+import ExploreNavigator from './ExploreNavigator';
+import MapNavigator from './MapNavigator';
+import ProfileNavigator from './ProfileNavigator';
+
+
 
 const TabNavigator = () => {
 
@@ -11,7 +15,10 @@ const TabNavigator = () => {
         <Tab.Navigator screenOptions={{
             headerShown: false
         }}>
-            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Explore" component={ExploreNavigator} />
+            <Tab.Screen name="Event" component={EventNavigator} />
+            <Tab.Screen name="Map" component={MapNavigator} />
+            <Tab.Screen name="Profile" component={ProfileNavigator} />
             
         </Tab.Navigator>
     )
