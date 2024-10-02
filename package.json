@@ -17,7 +17,7 @@
     "@react-navigation/native": "^6.1.17",
     "@react-navigation/native-stack": "^6.10.0",
     "@reduxjs/toolkit": "^2.2.6",
-    "axios": "^1.7.2",
+    "axios": "^1.7.4",
     "firebase": "^10.13.0",
     "iconsax-react-native": "^0.0.8",
     "query-string": "^9.0.0",

@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AddSquare, Calendar, Home2, Location, User } from 'iconsax-react-native';
 import React, { ReactNode } from 'react';
-import { TextComponent } from '../components';
+import { CircleComponent, TextComponent } from '../components';
 import { appColors } from '../constants/appColors';
 import { AddNewScreen } from '../screens';
 import EventNavigator from './EventNavigator';
@@ -11,6 +11,7 @@ import ProfileNavigator from './ProfileNavigator';
 import { Platform, View } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { globalStyles } from '../styles/globalStyles';
+import DrawerNavigator from './DrawerNavigator';
 
 
 const TabNavigator = () => {
@@ -25,6 +26,7 @@ const TabNavigator = () => {
                     height: Platform.OS === 'ios' ? 90 : 65,
                     justifyContent: 'center',
                     alignItems: 'center',
+                    backgroundColor: appColors.white,
                 },
                 tabBarIcon: (({ focused, color, size }) => {
                     let icon: ReactNode;
@@ -46,21 +48,18 @@ const TabNavigator = () => {
 
                         case 'Add':
                             icon =
-                                <View
-                                    style={[
-                                        globalStyles.shadow,
+                                <CircleComponent
+                                    size={52}
+                                    color={appColors.primary}
+                                    styles={[
                                         {
-                                            width: 52,
-                                            height: 52,
-                                            borderRadius: 100,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            backgroundColor: appColors.primary,
-                                            marginTop: Platform.OS === 'ios' ? -55 : -60 ,
-                                        }]}
+                                            marginTop: Platform.OS === 'ios' ? -55 : -60,
+                                        },
+                                        globalStyles.shadow
+                                    ]}
                                 >
                                     <AddSquare size={24} color={appColors.white} variant='Bold' />
-                                </View>
+                                </CircleComponent>
                             break;
                     }
                     return icon
