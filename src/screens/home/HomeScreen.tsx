@@ -16,21 +16,11 @@ import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
 
 const HomeScreen = ({navigation}: any) => {
 
-    const dispatch = useDispatch()
-
-    const auth = useSelector(authSelector);
-
-
-    const handleLogOut = async () => {
-        await AsyncStorage.removeItem('auth'); // Sửa lại ở đây
-        await GoogleSignin.signOut();
-        LoginManager.logOut(); // logout facebook
-        dispatch(removeAuth());
-    }
+    
 
     return (
         <View style={[globalStyles.container]}>
-            {/* <Button title='logout' onPress={handleLogOut}/> */}
+            
             <StatusBar barStyle={'light-content'} backgroundColor={appColors.primary} />
 
             <View style={{

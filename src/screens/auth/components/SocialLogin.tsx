@@ -42,18 +42,17 @@ const SocialLogin = () => {
 
             const userInfo = await GoogleSignin.signIn();
 
-            const user = userInfo.user;
-
+            const user = userInfo.user;           
+            
             const res: any = await authentication.HandleAuthentication(api, user, 'post');
-
+            
             dispatch(addAuth(res.data));
 
             await AsyncStorage.setItem(
                 'auth',
                 JSON.stringify(res.data),
             );
-
-            console.log(res);
+            
             setIsLoading(false);
 
         } catch (error) {
@@ -79,16 +78,13 @@ const SocialLogin = () => {
                     setIsLoading(true);
 
                     const data = {
-                        fullname: profile.name,
+                        name: profile.name,
                         email: profile.email ?? '',
-                        photoURL: profile.imageURL,
+                        photo: profile.imageURL,
                     };
-
-                    console.log("profile :",profile);
-                    
-
+                            
                     const res: any = await authentication.HandleAuthentication(api, data, 'post');
-
+                    console.log("res.data :",res.data);
                     dispatch(addAuth(res.data));
 
                     await AsyncStorage.setItem(

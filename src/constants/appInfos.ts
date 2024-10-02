@@ -7,6 +7,6 @@ export const appInfo ={
     },
     
     BASE_URL : 'http://localhost:3000',
-    // BASE_URL : 'http://10.0.2.2:3000',
+    // BASE_URL : 'http://52.41.36.82:3000',
 
 }
