@@ -1,8 +1,8 @@
 import { HambergerMenu, Notification, SearchNormal, Sort } from 'iconsax-react-native'
 import React from 'react'
-import { FlatList, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, ImageBackground, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { CategoriesListComponent, CircleComponent, EventItem, RowComponent, SectionComponent, SpaceComponent, TabBarComponent, TagComponent, TextComponent } from '../../components'
+import { ButtonComponent, CardComponent, CategoriesListComponent, CircleComponent, EventItem, RowComponent, SectionComponent, SpaceComponent, TabBarComponent, TagComponent, TextComponent } from '../../components'
 import { appColors } from '../../constants/appColors'
 import { fontFamilies } from '../../constants/fontFamilies'
 import { globalStyles } from '../../styles/globalStyles'
@@ -10,20 +10,20 @@ import { globalStyles } from '../../styles/globalStyles'
 
 const HomeScreen = ({ navigation }: any) => {
 
-const eventItems = {
-    title:'International Band Music Concert',
-    description:'Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase.',
-    location:{
-        title:'Gala Convention Center',
-        address:'36 Guild Street London, UK ',
-    },
-    imgUrl:'',
-    users:[''],
-    authorId:'',
-    startAt: Date.now(),
-    endAt: Date.now(),
-    date: Date.now(),
-}
+    const eventItems = {
+        title: 'International Band Music Concert',
+        description: 'Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase.',
+        location: {
+            title: 'Gala Convention Center',
+            address: '36 Guild Street London, UK ',
+        },
+        imgUrl: '',
+        users: [''],
+        authorId: '',
+        startAt: Date.now(),
+        endAt: Date.now(),
+        date: Date.now(),
+    }
 
     return (
         <View style={[globalStyles.container]}>
@@ -133,10 +133,72 @@ const eventItems = {
                             data={Array.from({ length: 5 })}
                             renderItem={({ item, index }) =>
                                 <EventItem item={eventItems} key={`event${index}`} type='card' />
+                            }
+                        />
+                        <SpaceComponent height={10} />
 
+
+
+                        <CardComponent>
+                            <ImageBackground
+                                source={require('../../assets/images/invite-image.png')}
+                                style={styles.imagebackground}
+                            >
+                                <SectionComponent styles={{
+                                    paddingTop: 10,
+                                    
+                                }}>
+                                    <TextComponent text='Invite your friends' title
+                                        styles={{
+                                            fontSize: 20,
+                                            
+                                        }}
+                                    />
+                                    <TextComponent
+                                        text='Get $20 for ticket'
+                                        styles={{
+                                            fontSize: 14,
+                                           
+                                        }}
+                                    />
+                                    <ButtonComponent 
+                                        text='Invite Now'
+                                        onPress={() => {}}
+                                        styles={{
+                                            backgroundColor: '#00F8FF',
+                                            width: 120,
+                                            height: 25,
+                                            borderRadius: 10,
+                                            marginTop: 10,
+                                            marginLeft: 0,
+                                        }}
+                                        type='primary'
+                                        textSize={16}
+                                    />
+                                </SectionComponent>
+                            </ImageBackground>
+                        </CardComponent>
+
+
+
+
+
+                        <SpaceComponent height={10} />
+
+                        <TabBarComponent title='Near Buy' onPress={() => { }} />
+                        <FlatList
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            data={Array.from({ length: 5 })}
+                            renderItem={({ item, index }) =>
+                                <EventItem item={eventItems} key={`event${index}`} type='card' />
                             }
                         />
                     </SectionComponent>
+
+
+
+
                 </ScrollView>
             </View>
 
@@ -149,4 +211,13 @@ const eventItems = {
 
 export default HomeScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    imagebackground: {
+        height: 150,
+        width: '100%',
+        borderRadius: 12,
+        resizeMode: 'cover',
+        backgroundColor: '#dff',
+
+    }
+})
