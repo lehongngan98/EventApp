@@ -12,6 +12,7 @@ import SpaceComponent from './SpaceComponent';
 import { fontFamilies } from '../constants/fontFamilies';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { globalStyles } from '../styles/globalStyles';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
     item?: EventModel;
@@ -21,11 +22,13 @@ interface Props {
 const EventItem = (props: Props) => {
     const { item, type } = props;
 
+    const navigation: any = useNavigation();
+
     console.log(item);
 
     return (
         <CardComponent
-            onPress={() => { }}
+            onPress={() => navigation.navigate('EventDetail', { item })}
             styles={{ width: appInfo.size.width * 0.7 }}
             isShadow
         >
@@ -65,7 +68,7 @@ const EventItem = (props: Props) => {
                                 marginVertical: 10,
                                 width: 35,
                                 height: 35,
-                                marginTop:-3,
+                                marginTop: -3,
                             }
                         ]}
                     >
@@ -73,9 +76,9 @@ const EventItem = (props: Props) => {
                     </CardComponent>
                 </RowComponent>
             </ImageBackground>
-            <TextComponent text={item?.title || 'No Title Available'} title size={18} numberOfLine={1} />
-            <AvatarGroup />
-            <RowComponent>
+            <TextComponent text={item?.title || 'No Title Available'} title size={18} numberOfLine={1} styles={{ marginVertical: 6 }} />
+            <AvatarGroup  />
+            <RowComponent styles={{ marginTop: 6 }}>
                 <Location size={18} color={appColors.text2} variant='Bold' />
                 <SpaceComponent width={5} />
                 <TextComponent
