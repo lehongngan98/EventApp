@@ -1,8 +1,8 @@
 import { HambergerMenu, Notification, SearchNormal, Sort } from 'iconsax-react-native'
 import React from 'react'
-import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { FlatList, Platform, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { CategoriesListComponent, CircleComponent, RowComponent, SpaceComponent, TagComponent, TextComponent } from '../../components'
+import { CategoriesListComponent, CircleComponent, EventItem, RowComponent, SectionComponent, SpaceComponent, TabBarComponent, TagComponent, TextComponent } from '../../components'
 import { appColors } from '../../constants/appColors'
 import { fontFamilies } from '../../constants/fontFamilies'
 import { globalStyles } from '../../styles/globalStyles'
@@ -10,7 +10,20 @@ import { globalStyles } from '../../styles/globalStyles'
 
 const HomeScreen = ({ navigation }: any) => {
 
-
+const eventItems = {
+    title:'International Band Music Concert',
+    description:'Enjoy your favorite dishe and a lovely your friends and family and have a great time. Food from local food trucks will be available for purchase.',
+    location:{
+        title:'Gala Convention Center',
+        address:'36 Guild Street London, UK ',
+    },
+    imgUrl:'',
+    users:[''],
+    authorId:'',
+    startAt: Date.now(),
+    endAt: Date.now(),
+    date: Date.now(),
+}
 
     return (
         <View style={[globalStyles.container]}>
@@ -106,10 +119,25 @@ const HomeScreen = ({ navigation }: any) => {
 
             </View>
 
-            <View style={{}}>
+            <View style={{ flex: 1 }}>
                 <View style={{ marginTop: -20 }}>
                     <CategoriesListComponent isFilter />
                 </View>
+
+                <ScrollView showsHorizontalScrollIndicator={false}>
+                    <SectionComponent styles={{ paddingHorizontal: 0, paddingVertical: 20 }}>
+                        <TabBarComponent title='Popular Events' onPress={() => { }} />
+                        <FlatList
+                            horizontal
+                            showsHorizontalScrollIndicator={false}
+                            data={Array.from({ length: 5 })}
+                            renderItem={({ item, index }) =>
+                                <EventItem item={eventItems} key={`event${index}`} type='card' />
+
+                            }
+                        />
+                    </SectionComponent>
+                </ScrollView>
             </View>
 
 
