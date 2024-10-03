@@ -8,6 +8,7 @@ import EventScreen from './events/EventScreen';
 import ProfileScreen from './profile/ProfileScreen';
 import MapScreen from './map/MapScreen';
 import AddNewScreen from './AddNewScreen';
+import SearchEvents from './events/SearchEvents';
 export {
     SplashScreen,
     LoginScreen,
@@ -18,5 +19,6 @@ export {
     ProfileScreen,
     MapScreen,
     AddNewScreen,
-    
+    SearchEvents,
+
 }

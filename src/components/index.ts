@@ -7,6 +7,7 @@ import SectionComponent from './SectionComponent';
 import RowComponent from './RowComponent';
 import CircleComponent from './CircleComponent';
 import TagComponent from './TagComponent';
+import CategoriesListComponent from './CategoriesListComponent';
 
 export {
     SpaceComponent,
@@ -18,5 +19,6 @@ export {
     RowComponent,
     CircleComponent,
     TagComponent,
+    CategoriesListComponent,
     
 }

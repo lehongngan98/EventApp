@@ -2,7 +2,7 @@ import { HambergerMenu, Notification, SearchNormal, Sort } from 'iconsax-react-n
 import React from 'react'
 import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
-import { CircleComponent, RowComponent, SpaceComponent, TagComponent, TextComponent } from '../../components'
+import { CategoriesListComponent, CircleComponent, RowComponent, SpaceComponent, TagComponent, TextComponent } from '../../components'
 import { appColors } from '../../constants/appColors'
 import { fontFamilies } from '../../constants/fontFamilies'
 import { globalStyles } from '../../styles/globalStyles'
@@ -18,11 +18,11 @@ const HomeScreen = ({ navigation }: any) => {
             <StatusBar barStyle={'light-content'} backgroundColor={appColors.primary} />
 
             <View style={{
-                height: 179,
+                height: 169,
                 backgroundColor: appColors.primary,
                 borderBottomLeftRadius: 25,
                 borderBottomRightRadius: 25,
-                paddingTop: Platform.OS === 'ios' ? 52 : StatusBar.currentHeight,
+                paddingTop: Platform.OS === 'ios' ? 45 : StatusBar.currentHeight,
                 paddingHorizontal: 16,
             }}>
                 <RowComponent >
@@ -61,7 +61,12 @@ const HomeScreen = ({ navigation }: any) => {
 
                 <SpaceComponent height={20} />
 
-                <RowComponent justify='space-between'>
+                <RowComponent
+                    justify='space-between'
+                    onPress={() => navigation.navigate('SearchEvents', {
+                        isFilter: false
+                    })}
+                >
                     <RowComponent>
                         <SearchNormal
                             color={appColors.white}
@@ -81,7 +86,9 @@ const HomeScreen = ({ navigation }: any) => {
                     </RowComponent>
 
                     <TagComponent
-                        onPress={() => console.log('Filter')}
+                        onPress={() => navigation.navigate('SearchEvents', {
+                            isFilter: true
+                        })}
                         text='Filters'
                         textColor={appColors.white}
                         icon={
@@ -93,10 +100,16 @@ const HomeScreen = ({ navigation }: any) => {
 
                     />
                 </RowComponent>
+
+                <SpaceComponent height={20} />
+
+
             </View>
 
-            <View style={{ flex: 1, backgroundColor: appColors.white }}>
-                <Text>Home Screen</Text>
+            <View style={{}}>
+                <View style={{ marginTop: -20 }}>
+                    <CategoriesListComponent isFilter />
+                </View>
             </View>
 
 

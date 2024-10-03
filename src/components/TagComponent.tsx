@@ -34,7 +34,9 @@ const TagComponent = (props: Props) => {
                     paddingHorizontal: 10,
                     paddingVertical: 5,
                     alignItems: 'center',
-                    justifyContent: 'center',                    
+                    justifyContent: 'center',       
+                    minWidth:82,
+                                 
                 },
                 styles
             ]}
