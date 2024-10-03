@@ -6,6 +6,7 @@ import ContainerComponent from './ContainerComponent';
 import SectionComponent from './SectionComponent';
 import RowComponent from './RowComponent';
 import CircleComponent from './CircleComponent';
+import TagComponent from './TagComponent';
 
 export {
     SpaceComponent,
@@ -16,5 +17,6 @@ export {
     SectionComponent,
     RowComponent,
     CircleComponent,
+    TagComponent,
     
 }

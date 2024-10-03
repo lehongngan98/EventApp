@@ -1,26 +1,20 @@
-import { Button, Platform, SafeAreaView, StatusBar, StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
+import { HambergerMenu, Notification, SearchNormal, Sort } from 'iconsax-react-native'
 import React from 'react'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useDispatch, useSelector } from 'react-redux'
-import { authSelector, removeAuth } from '../../redux/reducers/authReducer'
-import { GoogleSignin } from '@react-native-google-signin/google-signin'
-import { LoginManager } from 'react-native-fbsdk-next'
-import { globalStyles } from '../../styles/globalStyles'
+import { Platform, StatusBar, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+import { CircleComponent, RowComponent, SpaceComponent, TagComponent, TextComponent } from '../../components'
 import { appColors } from '../../constants/appColors'
-import { CircleComponent, RowComponent, TextComponent } from '../../components'
-import {  HambergerMenu, Notification } from 'iconsax-react-native'
-import { appInfo } from '../../constants/appInfos'
 import { fontFamilies } from '../../constants/fontFamilies'
-import  MaterialIcons  from 'react-native-vector-icons/MaterialIcons';
+import { globalStyles } from '../../styles/globalStyles'
 
 
-const HomeScreen = ({navigation}: any) => {
+const HomeScreen = ({ navigation }: any) => {
 
-    
+
 
     return (
         <View style={[globalStyles.container]}>
-            
+
             <StatusBar barStyle={'light-content'} backgroundColor={appColors.primary} />
 
             <View style={{
@@ -32,7 +26,7 @@ const HomeScreen = ({navigation}: any) => {
                 paddingHorizontal: 16,
             }}>
                 <RowComponent >
-                    <TouchableOpacity onPress={()=> navigation.openDrawer()}>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
                         <HambergerMenu color={appColors.white} size={24} />
                     </TouchableOpacity>
 
@@ -56,13 +50,48 @@ const HomeScreen = ({navigation}: any) => {
                                     height: 8,
                                     borderRadius: 2,
                                     backgroundColor: '#02E9FE',
-                                    borderColor:'#524CE0',
+                                    borderColor: '#524CE0',
                                 }}
                             >
 
                             </View>
                         </View>
                     </CircleComponent>
+                </RowComponent>
+
+                <SpaceComponent height={20} />
+
+                <RowComponent justify='space-between'>
+                    <RowComponent>
+                        <SearchNormal
+                            color={appColors.white}
+                            size={18}
+                            variant='TwoTone' // TwoTone, Filled, Outlined
+                        />
+                        <View
+                            style={{
+                                backgroundColor: appColors.gray1,
+                                height: 18,
+                                width: 1,
+                                marginHorizontal: 10,
+
+                            }}
+                        />
+                        <TextComponent text='Search...' color={appColors.gray1} size={18} />
+                    </RowComponent>
+
+                    <TagComponent
+                        onPress={() => console.log('Filter')}
+                        text='Filters'
+                        textColor={appColors.white}
+                        icon={
+                            <CircleComponent size={18} styles={{ backgroundColor: '#B1AEFA' }}>
+                                <Sort size={18} color='#524CE0' />
+                            </CircleComponent>
+                        }
+                        bgColor='#524CE0'
+
+                    />
                 </RowComponent>
             </View>
 
